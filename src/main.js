@@ -24,14 +24,11 @@ setInterval(() => {
 const audio = document.getElementById('myAudio');
 const muteButton = document.getElementById('muteButton');
 
-// 1. Сначала пробуем запустить с muted
 audio.play().catch(e => {
   console.log("Автовоспроизведение заблокировано:", e);
 });
 
-// 2. Обработчик кнопки
 muteButton.addEventListener('click', () => {
-  // Первый клик - снимаем muted и включаем звук
   if (audio.paused) {
     audio.muted = false;
     audio.play().catch(e => {
@@ -39,10 +36,8 @@ muteButton.addEventListener('click', () => {
     });
   }
 
-  // Переключаем состояние
   audio.muted = !audio.muted;
 
-  // Обновляем UI
   muteButton.textContent = audio.muted ? '🔇' : '🔊';
   muteButton.classList.toggle('muted', !audio.muted);
 });
